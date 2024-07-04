@@ -46,7 +46,7 @@ const styles: CSSProperties = {
     flexDirection: 'column',
     backgroundColor: '#55ACC8',
     padding: '20px',
-    minHeight: '100vh',
+    minHeight: '140vh',
     height: '100%',
   },
   link: {
