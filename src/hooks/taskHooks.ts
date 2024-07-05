@@ -37,12 +37,17 @@ export const useTaskHandlers = () => {
         updateTaskProgress(taskId, TASK_PROGRESS_ID.WAITING);
       };
 
+      const addingTaskHandler = (newTask: Task): void => {
+        setTasks([...tasks, newTask]);
+      };
+
       return {
         completeTaskHandler,
         startTaskHandler,
         inProgressTaskHandler,
         waitingTaskHandler, 
         moveMinusTaskProgress, 
-        movePlusTaskProgress
+        movePlusTaskProgress,
+        addingTaskHandler
     };
 }

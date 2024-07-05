@@ -1,7 +1,4 @@
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { TASK_PROGRESS_ID, TASK_PROGRESS_STATUS } from '../constants/app'
 import type { Task, CSSProperties } from '../types'
-import { taskState } from '../features/tasks/TaskAtoms'
 import { getIconStyle } from '../utils/styleUtil'
 import { getProgressCategory } from '../utils/progressUtil'
 import { useTaskHandlers } from '../hooks/taskHooks'
