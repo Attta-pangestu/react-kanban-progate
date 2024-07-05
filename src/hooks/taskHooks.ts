@@ -16,6 +16,14 @@ export const useTaskHandlers = () => {
       const completeTaskHandler = (taskId: number): void => {
         updateTaskProgress(taskId, TASK_PROGRESS_ID.COMPLETED);
       };
+      
+      const moveMinusTaskProgress = (taskId: number, progressId: number): void => {
+        updateTaskProgress(taskId, progressId - 1);
+      }
+
+      const movePlusTaskProgress = (taskId: number, progressId: number): void => {
+        updateTaskProgress(taskId, progressId + 1);
+      }
     
       const startTaskHandler = (taskId: number): void => {
         updateTaskProgress(taskId, TASK_PROGRESS_ID.NOT_STARTED);
@@ -33,6 +41,8 @@ export const useTaskHandlers = () => {
         completeTaskHandler,
         startTaskHandler,
         inProgressTaskHandler,
-        waitingTaskHandler
+        waitingTaskHandler, 
+        moveMinusTaskProgress, 
+        movePlusTaskProgress
     };
 }
