@@ -1,30 +1,24 @@
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { TASK_PROGRESS_ID, TASK_PROGRESS_STATUS } from '../constants/app'
-import type { Task, CSSProperties } from '../types' 
+import type { Task, CSSProperties } from '../types'
+import { taskState } from '../features/tasks/TaskAtoms'
+import { getIconStyle } from '../utils/styleUtil'
+import { getProgressCategory } from '../utils/progressUtil'
+import { useTaskHandlers } from '../hooks/taskHooks'
 
 interface TaskListItemProps {
   task: Task
 }
 
 const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
-  const getProgressCategory = (progressOrder: number): string => {
-    switch (progressOrder) {
-      case TASK_PROGRESS_ID.NOT_STARTED:
-        return TASK_PROGRESS_STATUS.NOT_STARTED
-      case TASK_PROGRESS_ID.IN_PROGRESS:
-        return TASK_PROGRESS_STATUS.IN_PROGRESS
-      case TASK_PROGRESS_ID.WAITING:
-        return TASK_PROGRESS_STATUS.WAITING
-      case TASK_PROGRESS_ID.COMPLETED:
-        return TASK_PROGRESS_STATUS.COMPLETED
-      default:
-        return TASK_PROGRESS_STATUS.NOT_STARTED
-    }
-  }
-
+  const {completeTaskHandler} = useTaskHandlers()
+  
   return (
     <div style={styles.tableBody}>
       <div style={styles.tableBodyTaskTitle}>
-        <span className="material-icons">check_circle</span>
+        <span className="material-icons" style={getIconStyle(task.progressOrder)} onClick={() : void => completeTaskHandler(task.id as number)}>
+          check_circle
+        </span>
         {task.title}
       </div>
       <div style={styles.tableBodyDetail}>{task.detail}</div>

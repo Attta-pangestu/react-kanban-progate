@@ -1,6 +1,9 @@
 import React from 'react'
 import type { Task, CSSProperties } from '../../types' 
 import { TASK_PROGRESS_ID } from '../../constants/app'
+import { getIconStyle } from '../../utils/styleUtil'
+import { taskState } from '../../features/tasks/TaskAtoms'
+import { useTaskHandlers } from '../../hooks/taskHooks'
 
 interface TaskCardProps {
   task: Task
@@ -16,10 +19,12 @@ const getArrowPositionStyle = (progressOrder: number): React.CSSProperties => {
 }
 
 const TaskCard = ({ task }: TaskCardProps): JSX.Element => {
+  const {completeTaskHandler} = useTaskHandlers()
+
   return (
     <div style={styles.taskCard}>
       <div style={styles.taskIcons}>
-        <div className="material-icons">check_circle</div>
+        <div className="material-icons" style={getIconStyle(task.progressOrder)} onClick={() : void => completeTaskHandler(task.id as number)}>check_circle</div>
         <div className="material-icons" style={styles.menuIcon}>
           more_vert
         </div>
