@@ -2,7 +2,6 @@ import React from 'react'
 import type { Task, CSSProperties } from '../../types' 
 import { TASK_PROGRESS_ID } from '../../constants/app'
 import { getIconStyle } from '../../utils/styleUtil'
-import { taskState } from '../../features/tasks/TaskAtoms'
 import { useTaskHandlers } from '../../hooks/taskHooks'
 
 interface TaskCardProps {
